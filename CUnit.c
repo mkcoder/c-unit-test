@@ -20,24 +20,20 @@ int assertFalse(struct NUit * _this, int value, char * name, char * message) {
 /**/
     if ( !value ) {
         printStatement(1, &((*_this).tst_num),
-                       &((*_this).npassed), &((*_this).nfailed), 1,
-                       value, name, message);
+                       &((*_this).npassed), &((*_this).nfailed),
+                       0, value, name, message);
         return 1;
     }
     
     printStatement( 0, &((*_this).tst_num),
-                   &((*_this).npassed), &((*_this).nfailed), 0,
-                   value, name, message
-                   );
+                   &((*_this).npassed), &((*_this).nfailed),
+                   0, value, name, message);
     /**/
     return 0;
 }
 
 int assertTrue(struct NUit * _this, int value, char * name, char * message) {
     
-    int test_num = (*_this).tst_num,
-        nPassed = (*_this).npassed,
-        nFailed = (*_this).nfailed;
     
     if ( value ) {
         printStatement(1, &((*_this).tst_num),
@@ -49,7 +45,7 @@ int assertTrue(struct NUit * _this, int value, char * name, char * message) {
     
     printStatement( 0, &((*_this).tst_num),
                    &((*_this).npassed), &((*_this).nfailed),
-                   0, value, name, message
+                   1, value, name, message
                    );
     
     return 0;
