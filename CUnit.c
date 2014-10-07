@@ -16,6 +16,54 @@ NUnit init() {
     return _this;
 }
 
+int assertArrayEquals(struct NUit * _this, int master[], int other[],
+                      char * name, char * message) {
+    int size = sizeof(master);
+    
+    int passed = 0;
+    int i = 0;
+    while (!passed)
+        if (master[i]!=other[i++])
+            passed = 1;
+    
+    if (passed) {
+        printStatement(1, &((*_this).tst_num),
+                       &((*_this).npassed), &((*_this).nfailed),
+                       1, passed, name, message);
+        return 1;
+    } else {
+        printStatement(0, &((*_this).tst_num),
+                       &((*_this).npassed), &((*_this).nfailed),
+                       1, passed, name, message);
+        return 0;
+    }
+}
+
+
+int assertArrayNotEquals(struct NUit * _this, int master[], int other[],
+                      char * name, char * message) {
+    int size = sizeof(master);
+    
+    int count = 0;
+    for (int i = 0; i < size; i++) {
+        if (master[i]==other[i])
+            count++;
+    }
+    
+    if (count!=size) {
+        printStatement(1, &((*_this).tst_num),
+                       &((*_this).npassed), &((*_this).nfailed),
+                       0, 0, name, message);
+        return 1;
+    } else {
+        printStatement(0, &((*_this).tst_num),
+                       &((*_this).npassed), &((*_this).nfailed),
+                       0, 1, name, message);
+        return 0;
+    }
+}
+
+
 int assertFalse(struct NUit * _this, int value, char * name, char * message) {
 /**/
     if ( !value ) {

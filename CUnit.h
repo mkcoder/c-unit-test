@@ -23,6 +23,27 @@ typedef struct NUit {
  * @return NUNIT returns a nunit struct with all the values initialized to there proper values
  */
 NUnit init();
+/**
+This functions checks if two arrays (master, and other) are the same, if they are the same it returns a 1 (true) or else a 0 (false).
+ @return int returns 1 if passed and a 0 if failed
+ @param _this takes a Struct reference and this is what the value will be modified throughout the functions.
+ @param master the orginal or the master array to compare the other with.
+ @param other what we are comparing against.
+ @param name the name of the test case, makes it easier to debug your code later on.
+ @param message a small message as to why you are writing this test.
+ */
+int assertArrayEquals(struct NUit * _this, int master[], int other[], char * name, char * message);
+
+/**
+ This functions checks if two arrays (master, and other) are not the same, if they are the same it returns a false (0) and true (1) if they are not the same.
+ @return int returns 1 if passed and a 0 if failed
+ @param _this takes a Struct reference and this is what the value will be modified throughout the functions.
+ @param master the orginal or the master array to compare the other with.
+ @param other what we are comparing against.
+ @param name the name of the test case, makes it easier to debug your code later on.
+ @param message a small message as to why you are writing this test.
+ */
+int assertArrayNotEquals(struct NUit * _this, int master[], int other[], char * name, char * message);
 
 /**
  This function checks if the value does not equal 0 and if it does it returns false otherwise it returns true.
@@ -71,7 +92,7 @@ int assertNotEquals(struct NUit * _this,
                     char * testName, char * message);
 
 /**
- @private
+ @private this is a private method
 This method prints the statement to the console window and should not be called directly from the main function.
  @return void this only prints to the window
  
@@ -90,4 +111,10 @@ void printStatement(int score, int * testNumber,
                     char * testName, char * message);
 
 
+/**
+ This functions prints out the console window the result of the test.
+ It includes what how many test cases there were there in the program.
+ How many passes and how many failed.   
+ @param _this the structure that you want to print out the result for.
+ */
 void PrintResult(struct NUit * _this);
